@@ -1,4 +1,5 @@
 # Analizador de logs de red
+![Dashboard](screenshot.png)
 
 Herramienta de análisis de tráfico de red con detección automática 
 de anomalías usando Machine Learning. Desarrollado como proyecto de 
