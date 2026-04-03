@@ -26,9 +26,13 @@ def init_db():
 
 def insert_logs(df: pd.DataFrame):
     conn = sqlite3.connect(DB_PATH)
-    df.to_sql("logs", conn, if_exists="append", index=False)
+    columnas = ["timestamp", "src_ip", "dst_ip", "src_port", 
+                "dst_port", "bytes_kb", "protocol", "hour", "date"]
+    df_clean = df[columnas].copy()
+    df_clean["anomaly"] = 0
+    df_clean.to_sql("logs", conn, if_exists="append", index=False)
     conn.close()
-    print(f"[DB] {len(df)} registros insertados")
+    print(f"[DB] {len(df_clean)} registros insertados")
 
 def query_logs() -> pd.DataFrame:
     conn = sqlite3.connect(DB_PATH)
